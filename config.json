@@ -1,0 +1,6 @@
+{
+    "token": "ODI1NTQyMjE2MjQzODcxNzc1.YF_cGg.KI1QzVDft56BbzmJdoOUkcFFodU",
+    "prefix": "meow", 
+    "commands_location": "./commands", 
+    "commands_extension": ".js"
+}
