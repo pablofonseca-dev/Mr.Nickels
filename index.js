@@ -42,22 +42,22 @@ client.on('ready', () => {
 /**
  * *When the message event is fired from the client instance is going to execute the callback code. 
  */
-client.on('message', msg => {
+client.on('message', message => {
 
     /**
      * A command handler for dynamic command execution. 
      */
-    if(msg.author.tag == client.user.tag || !msg.content.startsWith(prefix) || msg.author.bot) return;
+    if(message.author.tag == client.user.tag || !message.content.toLowerCase().startsWith(prefix) || message.author.bot) return;
 
-    const args = msg.content.slice(prefix.length).trim().split(/ +/);
-    const command = args.shift().toLowerCase();
+    const args = message.content.slice(prefix.length).trim().split(/ +/);
+    const commandName = args.shift().toLowerCase();
 
-    if(!(client.commands.has(command))) return;
+    if(!(client.commands.has(commandName))) return;
 
     try{
-        client.commands.get(command).execute(msg, args);
+        client.commands.get(commandName).execute(message, args);
     }catch(command_error){
-        msg.reply('There was a problem executing the command.');
+        message.reply('There was a problem executing the command.');
     }
 });
 
