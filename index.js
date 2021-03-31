@@ -19,16 +19,24 @@ const fs = require('fs');
 const {token, prefix, commands_location, commands_extension} = require('./config.json');
 
 /**
- * This line of code is going to read the file names in the bot commands directory
- * and is going to filter only the .js files storing them in a collection.
- */
-const commandFiles = fs.readdirSync(commands_location).filter(file => file.endsWith(commands_extension));
+ * * Dynamic Directory Synchronous Reading
+ * 
+ * These lines of code are going to read file names in the bot commands directory and subdirectories
+ * and is going to filter only the .js files storing them in a in-memory Discord Collection instance. 
+ *
+*/
 
-//Save each object returned from each .js file collected in the Discord.Collection() instance 
-for(const file of commandFiles){
-    const commandObj = require(`${commands_location}/${file}`);
-    client.commands.set(commandObj.name, commandObj);
-}
+const mainDirectories = fs.readdirSync(commands_location, {encoding: 'utf-8', withFileTypes: false});
+
+mainDirectories.forEach(subdirectory => {
+    let files = fs.readdirSync(`${commands_location}/${subdirectory}`, {encoding: 'utf-8', withFileTypes: false});
+    files.forEach(file => {
+        //Save each object returned from each .js file collected in the Discord.Collection() instance 
+        const commandObj = require(`${commands_location}/${subdirectory}/${file}`);
+        client.commands.set(commandObj.name, commandObj);
+    })
+});
+
 
 /**
  * *When the ready event is fired from the client instance is going execute the callback code.
@@ -43,7 +51,6 @@ client.on('ready', () => {
  * *When the message event is fired from the client instance is going to execute the callback code. 
  */
 client.on('message', message => {
-
     /**
      * A command handler for dynamic command execution. 
      */

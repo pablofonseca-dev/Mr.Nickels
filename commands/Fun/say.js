@@ -7,6 +7,7 @@ module.exports = {
     execute(message, args){
         if(args.length == 0){
             message.reply(`I need more arguments to develop that operation`);
+            return;
         }
         message.channel.send(args.join(' '));
     }
