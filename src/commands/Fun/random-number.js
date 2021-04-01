@@ -2,7 +2,7 @@ const getRandomInt = require('../../helpers/get-random-int');
 module.exports = {
     "name": "random",
     "description": "The bot is going to reply with a random number",
-    execute(message, args){
+    execute(client, message, args){
         let maxInt = 0;
         try{
             maxInt = parseInt(args[0]);

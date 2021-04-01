@@ -4,7 +4,7 @@
 module.exports = {
     name: 'ping',
 	description: 'When the user types Ping the bot should reply Pong',
-	execute(message, args) {
+	execute(client, message, args) {
 		message.reply("Pong!");
 	},
 };
