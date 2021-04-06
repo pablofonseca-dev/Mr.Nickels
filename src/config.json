@@ -1,0 +1,9 @@
+{
+    "prefix": "#", 
+    "commands_module_location": "./src/commands", 
+    "events_module_location": "./src/events", 
+    "commands_location": "./commands", 
+    "events_location": "./events",
+    "default_extension": ".js", 
+    "codeblock_symbols": "```"
+}
