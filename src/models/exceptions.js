@@ -15,6 +15,6 @@ const EXCEPTIONS_SCHEMA = new Schema({
  * on the Exception Messages Schema, store that object in
  * the model name collection that is available in MongoDB. 
  * */
-const ExceptionsModel = mongoose.Model(MODEL_NAME, EXCEPTIONS_SCHEMA);
+const ExceptionsModel = mongoose.model(MODEL_NAME, EXCEPTIONS_SCHEMA);
 
 module.exports = ExceptionsModel; 
